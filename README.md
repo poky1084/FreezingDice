@@ -1,2 +1,2 @@
 # FreezingDice
-Beta version with Bypassed Cloudflare for Stake.com
+Alpha version with Bypassed Cloudflare for Stake.com
