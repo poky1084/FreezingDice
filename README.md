@@ -2,7 +2,8 @@
 Alpha version with Bypassed Cloudflare for Stake.com
 
 install dependencies in python3:
-```pip install curl-cffi
+```
+pip install curl-cffi
 pip install pyqt5
 pip install cffi
 pip install requests
