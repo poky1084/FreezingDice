@@ -13,15 +13,19 @@ from PyQt5.QtWidgets import (
     QLineEdit
 )
 import sys
-import cloudscraper
+# import cloudscraper
 import requests
 import os
 import sys
 import json
+import cffi
+import _cffi_backend
+from curl_cffi import requests
+
 # Step 1: Create a worker class
 #
 
-scraper = cloudscraper.create_scraper()
+# scraper = cloudscraper.create_scraper()
 API_KEY = ""
 target = 2.56
 condition = 'above'
@@ -50,12 +54,13 @@ class Worker(QObject):
        
         while enabled:
         
-            resp = scraper.post(url=url, headers = {
-        'Content-type': "application/json; charset=utf-8",
-        'x-access-token': API_KEY},json={"query": body, "variables":{"target":target,"condition":condition,"identifier":"ffeefefeffefefea5","amount":betamount,"currency":currency}})
-            re = resp.content
-            print("response: ", re)
-            data = json.loads(re)
+            resp = requests.post(url=url, headers = {
+            'Content-type': "application/json; charset=utf-8",
+            'x-access-token': API_KEY},json={"query": body, "variables":{"target":target,"condition":condition,"identifier":"ffeefefeffefefea5","amount":betamount,"currency":currency}}, impersonate="chrome101")
+
+            
+            print("response: ", resp.json())
+            data = resp.json()
             del logs[0]
             if 'errors' in data:
                 logs.append('<tr><td>'+ 'result: ' + str(data["errors"][0]['message'])+'</td></tr>')
