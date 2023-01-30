@@ -12,3 +12,5 @@ pip install --upgrade cx_Freeze
 ```
 to build exe run:
 ```python3 setup.py install```
+or mac:
+```python3 setup.py bdist_dmg```
